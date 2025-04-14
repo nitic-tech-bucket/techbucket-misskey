@@ -49,15 +49,18 @@ services:
       interval: 5s
       retries: 20
 
-  cloudflare:
+  tunnel:
+    build: 
+      context: ./tunnel
+      dockerfile: Dockerfile
     restart: always
-    image: cloudflare/cloudflared:latest
     networks:
       - internal_network
       - external_network
     env_file:
       - .config/docker.env
-    command: tunnel --no-autoupdate run --token $CLOUDFLARE_TOKEN
+    volumes:
+      - ./cloudflared:/etc/cloudflared
 
 #  mcaptcha:
 #    restart: always
