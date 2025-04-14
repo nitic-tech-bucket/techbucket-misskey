@@ -57,8 +57,6 @@ services:
       - external_network
     env_file:
       - .config/docker.env
-    volumes:
-      - ./cloudflare:/etc/cloudflared
     command: tunnel --no-autoupdate run --token $CLOUDFLARE_TOKEN
 
 #  mcaptcha:
