@@ -16,9 +16,9 @@ services:
       - "3000:3000"
     networks:
       - internal_network
-      - external_network
-    # env_file:
-    #   - .config/docker.env
+      # - external_network
+    env_file:
+      - .config/docker.env
     volumes:
       - ./files:/misskey/files
       - ./.config:/misskey/.config:ro
@@ -48,6 +48,18 @@ services:
       test: "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"
       interval: 5s
       retries: 20
+
+  cloudflare:
+    restart: always
+    image: cloudflare/cloudflared:latest
+    networks:
+      - internal_network
+      - external_network
+    env_file:
+      - .config/docker.env
+    volumes:
+      - ./cloudflare:/etc/cloudflared
+    command: tunnel --no-autoupdate run --token $CLOUDFLARE_TOKEN
 
 #  mcaptcha:
 #    restart: always
