@@ -1,5 +1,7 @@
 FROM ubuntu:24.04
 
+ARG CLOUDFLARE_TOKEN
+
 #必須パッケージのインストール
 RUN apt-get update && \
     apt-get -y install wget unzip curl
