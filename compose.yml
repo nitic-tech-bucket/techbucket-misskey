@@ -53,6 +53,8 @@ services:
     build: 
       context: ./tunnel
       dockerfile: Dockerfile
+      args:
+        - CLOUDFLARE_TOKEN=${CLOUDFLARE_TOKEN}
     restart: always
     networks:
       - internal_network
