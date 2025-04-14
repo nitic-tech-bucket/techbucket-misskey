@@ -14,7 +14,7 @@ RUN cat /usr/share/keyrings/cloudflare-main.gpg
 RUN apt-get update && \
     apt-get -y install cloudflared
 
-RUN cloudflared service install $CLOUDFLARE_TOKEN
+RUN cloudflared service install ${CLOUDFLARE_TOKEN}
 
 COPY startup.sh /tmp/startup.sh
 RUN chmod 744 /tmp/startup.sh
