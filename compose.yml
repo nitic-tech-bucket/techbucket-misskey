@@ -114,8 +114,5 @@ networks:
 
 volumes:
   misskey-files:
-    external: true
   misskey-redis:
-    external: true
   misskey-db:
-    external: true
